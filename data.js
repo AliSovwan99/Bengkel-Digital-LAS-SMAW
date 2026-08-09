@@ -44,11 +44,11 @@ const PROFIL = {
      dengan index.html, lalu ganti nilai "foto" di bawah ini menjadi nama file tsb.
      Kalau file belum ada / salah nama, ikon default akan tetap tampil otomatis. */
   foto:"profil.jpg",
-  nama:"[Nama Anda]",
-  nim:"[NIM / NIP]",
-  prodi:"PPG Calon Guru — Bidang Studi Teknik Mesin / Pengelasan",
+  nama:"Mohamad Ali Sovwan",
+  nim:"253151743666",
+  prodi:"PPG Calon Guru — Bidang Studi Teknik Mesin",
   institusi:"Universitas Negeri Malang (UM)",
-  kontak:"[email — silakan lengkapi]",
+  kontak:"alisovwan@gmail.com",
   bio:"Media ini dikembangkan sebagai bagian dari tugas proyek pembelajaran inovatif pada program PPG Calon Guru, untuk mendukung pembelajaran mata pelajaran pilihan Pengelasan, konsentrasi Teknik Pemesinan, Fase F."
 };
 
