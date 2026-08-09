@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bengkel Las Digital — Media Pembelajaran SMAW Fase F</title>
+<meta name="description" content="Media pembelajaran interaktif Teknik Pengelasan SMAW untuk Teknik Pemesinan Fase F" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="tag">FASE F · TEKNIK PEMESINAN</span>
+      <h1>Bengkel Las Digital</h1>
+      <div class="sub">Media Pembelajaran Interaktif — SMAW</div>
+    </div>
+
+    <nav class="nav-group">
+      <button class="nav-btn active" data-view="beranda"><span class="ico">🏠</span> Beranda</button>
+      <button class="nav-btn" data-view="petunjuk"><span class="ico">🧭</span> Petunjuk Penggunaan</button>
+      <button class="nav-btn" data-view="informasi"><span class="ico">📋</span> Informasi Pembelajaran</button>
+
+      <button class="nav-btn" data-view="materi" data-toggle="materi-sub"><span class="ico">🔩</span> Materi <span style="margin-left:auto;font-size:11px;">▾</span></button>
+      <div class="nav-sub" id="materi-sub"></div>
+
+      <button class="nav-btn" data-view="latihan"><span class="ico">📝</span> Latihan Soal</button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="gauge-mini"><span class="gauge-dot"></span> Status: siap digunakan</div>
+      Mata Pelajaran Pilihan · Pengelasan
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <div class="crumb">Bengkel Las Digital / <b id="crumbView">Beranda</b></div>
+      </div>
+      <div class="crumb mono" id="clock"></div>
+    </div>
+
+    <!-- ---------- BERANDA ---------- -->
+    <section class="view active" id="view-beranda">
+      <div class="hero panel-rivets">
+        <div class="embers"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="eyebrow">Mata Pelajaran Pilihan · Pengelasan</div>
+        <h1>Belajar SMAW,<br>Sejak Percikan Pertama.</h1>
+        <p class="lede">Media pembelajaran interaktif untuk Teknik Pemesinan Fase F. Pelajari peralatan, keselamatan kerja, prinsip busur listrik, hingga cara menyalakan busur las — lengkap dengan narasi audio, video, dan latihan soal.</p>
+        <div class="hero-meta">
+          <span class="chip">🎧 Narasi audio otomatis</span>
+          <span class="chip">🎬 Video &amp; animasi</span>
+          <span class="chip">🕹️ Simulator interaktif</span>
+          <span class="chip">📝 15 soal latihan</span>
+        </div>
+        <div style="margin-top:22px;">
+          <button class="btn btn-primary" data-view="materi"><span>⚡</span> Mulai Belajar</button>
+          <button class="btn" data-view="petunjuk" style="margin-left:10px;">Lihat Petunjuk Dulu</button>
+        </div>
+        <div class="hero-arc-wrap" id="heroArcMount"></div>
+      </div>
+      <div class="hazard-strip thin" style="margin-bottom:24px;"></div>
+
+      <h2 style="margin-bottom:16px;">Jelajahi Menu</h2>
+      <div class="grid-3">
+        <div class="tile" data-view="petunjuk"><span class="ico">🧭</span><h3>Petunjuk Penggunaan</h3><p>Cara menggunakan media ini secara efektif.</p></div>
+        <div class="tile" data-view="informasi"><span class="ico">📋</span><h3>Informasi Pembelajaran</h3><p>CP, TP, ATP, peta kompetensi, profil pengembang.</p></div>
+        <div class="tile" data-view="materi"><span class="ico">🔩</span><h3>Materi</h3><p>6 topik lengkap seputar pengelasan SMAW.</p></div>
+        <div class="tile" data-view="latihan"><span class="ico">📝</span><h3>Latihan Soal</h3><p>10 pilihan ganda, 5 esai, dan simulator.</p></div>
+        <div class="tile" data-materi="k3"><span class="ico">🦺</span><h3>Mulai dari K3</h3><p>Kenali keselamatan kerja sebelum praktik.</p></div>
+        <div class="tile" data-materi="busur"><span class="ico">✨</span><h3>Coba Simulator Busur</h3><p>Latih intuisi menyalakan busur las.</p></div>
+      </div>
+    </section>
+
+    <!-- ---------- PETUNJUK ---------- -->
+    <section class="view" id="view-petunjuk">
+      <div class="eyebrow">Panduan</div>
+      <h2>Petunjuk Penggunaan</h2>
+      <div class="panel">
+        <ul class="steps">
+          <li class="step"><span class="step-num"></span><div><h4>Mulai dari menu Informasi Pembelajaran</h4><p>Pahami dulu Capaian Pembelajaran (CP) dan alur belajarnya (ATP) agar tahu ke mana arah pembelajaran ini.</p></div></li>
+          <li class="step"><span class="step-num"></span><div><h4>Pelajari Materi secara berurutan</h4><p>Buka menu <b>Materi</b> di sidebar, lalu ikuti urutan: Peralatan → K3 → Prinsip &amp; Transfer Logam → Setting → Parameter → Penyalaan Busur.</p></div></li>
+          <li class="step"><span class="step-num"></span><div><h4>Aktifkan narasi audio jika perlu</h4><p>Tekan tombol 🔊 <i>Dengarkan Materi</i> di setiap halaman materi untuk mendengarkan ringkasan penjelasan secara otomatis.</p></div></li>
+          <li class="step"><span class="step-num"></span><div><h4>Tonton video &amp; coba animasi/simulator</h4><p>Setiap materi dilengkapi video pendukung atau ilustrasi animasi. Materi Penyalaan Busur memiliki simulator interaktif — coba dan rasakan sendiri!</p></div></li>
+          <li class="step"><span class="step-num"></span><div><h4>Uji pemahaman di menu Latihan Soal</h4><p>Kerjakan 10 soal pilihan ganda (skor otomatis) dan 5 soal esai (dilengkapi rubrik untuk menilai jawaban sendiri).</p></div></li>
+          <li class="step"><span class="step-num"></span><div><h4>Gunakan navigasi di sidebar kapan saja</h4><p>Kamu bebas berpindah menu tanpa harus mengulang dari awal — progres skor latihan soal tersimpan otomatis di perangkatmu.</p></div></li>
+        </ul>
+      </div>
+      <div class="callout tip">💡 Media ini paling nyaman diakses lewat laptop/PC untuk sesi belajar di kelas, dan tetap dapat dibuka lewat HP untuk belajar mandiri di luar jam sekolah.</div>
+    </section>
+
+    <!-- ---------- INFORMASI PEMBELAJARAN ---------- -->
+    <section class="view" id="view-informasi">
+      <div class="eyebrow">Ruang Guru</div>
+      <h2>Informasi Pembelajaran</h2>
+
+      <div class="tabbar" id="infoTabs">
+        <button class="tabbtn active" data-tab="cp">CP</button>
+        <button class="tabbtn" data-tab="tp">TP</button>
+        <button class="tabbtn" data-tab="atp">ATP</button>
+        <button class="tabbtn" data-tab="peta">Peta Kompetensi</button>
+        <button class="tabbtn" data-tab="profil">Profil Pengembang</button>
+        <button class="tabbtn" data-tab="pustaka">Daftar Pustaka</button>
+      </div>
+
+      <div class="tabpane active" id="tab-cp">
+        <div class="panel"><h3>Capaian Pembelajaran (CP)</h3><p id="cpText" style="font-size:15px;"></p></div>
+      </div>
+
+      <div class="tabpane" id="tab-tp">
+        <div class="panel"><h3>Tujuan Pembelajaran (TP)</h3><div id="tpList"></div></div>
+      </div>
+
+      <div class="tabpane" id="tab-atp">
+        <div class="panel"><h3>Alur Tujuan Pembelajaran (ATP)</h3><ol class="steps" id="atpList" style="list-style:none;padding:0;"></ol></div>
+      </div>
+
+      <div class="tabpane" id="tab-peta">
+        <div class="panel"><h3>Peta Kompetensi</h3><div class="grid-2" id="petaGrid"></div></div>
+      </div>
+
+      <div class="tabpane" id="tab-profil">
+        <div class="panel">
+          <h3>Profil Pengembang</h3>
+          <div class="profile-card">
+            <div class="avatar-ring" id="profAvatar">🧑‍🏫</div>
+            <div>
+              <div id="profNama" style="color:var(--text-hi);font-weight:600;font-size:16px;"></div>
+              <div id="profNim" class="mono" style="font-size:12.5px;color:var(--text-dim);"></div>
+              <div id="profProdi" style="font-size:13.5px;margin-top:4px;"></div>
+              <div id="profInstitusi" style="font-size:13.5px;"></div>
+            </div>
+          </div>
+          <p id="profBio" style="margin-top:16px;"></p>
+          <p class="mono" style="font-size:12.5px;color:var(--text-dim);" id="profKontak"></p>
+        </div>
+      </div>
+
+      <div class="tabpane" id="tab-pustaka">
+        <div class="panel"><h3>Daftar Pustaka</h3><ul class="biblio" id="pustakaList"></ul></div>
+      </div>
+    </section>
+
+    <!-- ---------- MATERI ---------- -->
+    <section class="view" id="view-materi">
+      <div class="eyebrow" id="materiEyebrow">Materi</div>
+      <div class="materi-head">
+        <h2 id="materiTitle" style="margin-bottom:0;">Judul Materi</h2>
+        <div class="tts-bar" id="ttsBar">
+          <button class="btn btn-sm" id="ttsBtn">🔊 Dengarkan Materi</button>
+          <div class="tts-wave"><span></span><span></span><span></span><span></span></div>
+          <select id="ttsRate">
+            <option value="0.85">Lambat</option>
+            <option value="1" selected>Normal</option>
+            <option value="1.25">Cepat</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="materiMedia"></div>
+      <div class="panel" id="materiBody"></div>
+
+      <div class="materi-nav">
+        <button class="btn" id="materiPrev">← Materi Sebelumnya</button>
+        <button class="btn btn-primary" id="materiNext">Materi Berikutnya →</button>
+      </div>
+    </section>
+
+    <!-- ---------- LATIHAN SOAL ---------- -->
+    <section class="view" id="view-latihan">
+      <div class="eyebrow">Uji Pemahaman</div>
+      <h2>Latihan Soal</h2>
+
+      <div class="tabbar" id="latihanTabs">
+        <button class="tabbtn active" data-tab="pg">Pilihan Ganda (10)</button>
+        <button class="tabbtn" data-tab="esai">Esai (5)</button>
+        <button class="tabbtn" data-tab="game">Simulator Busur</button>
+        <button class="tabbtn" data-tab="lab">Lab Parameter Las</button>
+      </div>
+
+      <div class="tabpane active" id="tabl-pg">
+        <div class="panel">
+          <div id="pgQuiz"></div>
+          <div class="score-panel">
+            <div>
+              <div class="mono" style="font-size:11.5px;color:var(--text-dim);">SKOR KAMU</div>
+              <div class="score-num"><span id="pgScore">0</span>/10</div>
+            </div>
+            <button class="btn btn-primary" id="pgCheck">Periksa Semua Jawaban</button>
+            <button class="btn" id="pgReset">Ulangi</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tabpane" id="tabl-esai">
+        <div class="panel"><div id="esaiQuiz"></div></div>
+      </div>
+
+      <div class="tabpane" id="tabl-game">
+        <div class="panel">
+          <h3>Simulator Penyalaan Busur Las</h3>
+          <p>Klik tombol <b>“Mulai”</b>, lalu klik <b>“Sentuh &amp; Tarik”</b> tepat saat indikator berada di zona hijau untuk menyalakan busur dengan sempurna.</p>
+          <div id="arcGameMount2"></div>
+        </div>
+      </div>
+
+      <div class="tabpane" id="tabl-lab">
+        <div class="panel">
+          <h3>Lab Parameter Pengelasan — Sebab &amp; Akibat</h3>
+          <p>Skenario: mengelas pelat baja karbon 3 mm posisi datar (flat) menggunakan elektroda 3,2 mm. Atur keempat parameter di bawah, lalu tekan <b>“Coba Las”</b> untuk melihat dampaknya terhadap hasil manik las.</p>
+          <div id="paramLabMount"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-foot">
+      Bengkel Las Digital — Media Pembelajaran Interaktif Teknik Pengelasan SMAW · Fase F Teknik Pemesinan · Dibuat untuk keperluan PPG Calon Guru
+    </footer>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
