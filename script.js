@@ -29,6 +29,59 @@ function tickClock(){
 setInterval(tickClock, 1000*20); tickClock();
 
 /* =========================================================
+   ANIMASI: stagger reveal, ripple tombol, flash transisi, spark kursor
+   ========================================================= */
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function staggerReveal(container, selector){
+  if(!container) return;
+  const items = Array.from(container.querySelectorAll(selector));
+  items.forEach(it=>{ it.classList.add('reveal'); it.classList.remove('in-view'); });
+  requestAnimationFrame(()=>{
+    items.forEach((it,i)=> setTimeout(()=> it.classList.add('in-view'), Math.min(i*55, 500)));
+  });
+}
+
+function playArcFlash(){
+  const bar = document.getElementById('viewFlash');
+  if(!bar) return;
+  bar.classList.remove('play');
+  void bar.offsetWidth; // reflow untuk mengulang animasi
+  bar.classList.add('play');
+}
+
+/* ripple pada semua tombol .btn */
+document.addEventListener('click', (ev)=>{
+  const btn = ev.target.closest('.btn');
+  if(!btn) return;
+  const rect = btn.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height) * 1.4;
+  const ripple = document.createElement('span');
+  ripple.className = 'ripple';
+  ripple.style.width = ripple.style.height = size+'px';
+  ripple.style.left = (ev.clientX - rect.left - size/2)+'px';
+  ripple.style.top = (ev.clientY - rect.top - size/2)+'px';
+  btn.appendChild(ripple);
+  setTimeout(()=> ripple.remove(), 650);
+});
+
+/* percikan mengikuti kursor (dihormati prefers-reduced-motion) */
+if(!prefersReducedMotion){
+  let lastSpark = 0;
+  document.addEventListener('mousemove', (ev)=>{
+    const now = Date.now();
+    if(now - lastSpark < 70) return;
+    lastSpark = now;
+    const s = document.createElement('span');
+    s.className = 'cursor-spark';
+    s.style.left = ev.clientX+'px';
+    s.style.top = ev.clientY+'px';
+    document.body.appendChild(s);
+    setTimeout(()=> s.remove(), 700);
+  });
+}
+
+/* =========================================================
    NAVIGATION
    ========================================================= */
 const VIEW_LABELS = {
@@ -44,6 +97,8 @@ function showView(name){
   $('#crumbView').textContent = VIEW_LABELS[name] || name;
   window.scrollTo({top:0, behavior:'smooth'});
   if(window.innerWidth <= 900){ $('#sidebar').classList.remove('open'); }
+  playArcFlash();
+  if(target) staggerReveal(target, '.panel, .tile, .step, .q-card, .biblio li, .lab-field');
 }
 
 document.addEventListener('click', (ev)=>{
@@ -126,6 +181,8 @@ function renderInformasi(){
 
   const pustakaWrap = $('#pustakaList'); pustakaWrap.innerHTML = '';
   PUSTAKA.forEach(p=> pustakaWrap.appendChild(el('li',{html:p})));
+
+  staggerReveal($('#view-informasi'), '.panel, .biblio li');
 }
 renderInformasi();
 
@@ -137,7 +194,7 @@ function wireTabs(barSel, paneIdPrefix){
       btn.classList.add('active');
       $all('.tabpane').forEach(p=>{ if(p.id.startsWith(paneIdPrefix)) p.classList.remove('active'); });
       const pane = document.getElementById(paneIdPrefix + btn.dataset.tab);
-      if(pane) pane.classList.add('active');
+      if(pane){ pane.classList.add('active'); staggerReveal(pane, '.panel, .biblio li, .q-card'); }
     });
   });
 }
@@ -190,6 +247,8 @@ function renderMateri(id){
   };
 
   stopSpeech();
+  playArcFlash();
+  staggerReveal($('#view-materi'), '#materiMedia > *, #materiBody, .callout, .grid-2 > *');
 }
 renderMateri(currentMateri);
 
@@ -575,6 +634,7 @@ function renderPG(){
     card.appendChild(el('div',{class:'q-fb', id:`fb-${qi}`}));
     wrap.appendChild(card);
   });
+  staggerReveal(wrap, '.q-card');
 }
 renderPG();
 
@@ -595,8 +655,22 @@ $('#pgCheck').addEventListener('click', ()=>{
     fb.classList.toggle('ok', chosen===q.correct);
     fb.classList.toggle('no', chosen!==q.correct);
   });
-  $('#pgScore').textContent = score;
+  animateScoreCount(score);
 });
+
+function animateScoreCount(target){
+  const node = $('#pgScore');
+  const start = parseInt(node.textContent||'0',10);
+  const steps = Math.max(Math.abs(target-start), 1);
+  const dur = 500, stepTime = Math.max(dur/steps, 30);
+  let cur = start;
+  const dir = target>start ? 1 : -1;
+  const timer = setInterval(()=>{
+    cur += dir;
+    node.textContent = cur;
+    if(cur===target) clearInterval(timer);
+  }, stepTime);
+}
 
 $('#pgReset').addEventListener('click', ()=>{
   pgAnswers = {};
@@ -622,6 +696,7 @@ function renderEsai(){
     card.appendChild(rubric);
     wrap.appendChild(card);
   });
+  staggerReveal(wrap, '.q-card');
 }
 renderEsai();
 
